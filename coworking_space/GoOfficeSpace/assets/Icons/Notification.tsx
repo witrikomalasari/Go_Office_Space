@@ -1,9 +1,9 @@
-import React from 'react';
+import React, {FC} from 'react';
 import SvgWrapper from '@components/Atoms/SvgWrapper';
 import {Path, Svg} from 'react-native-svg';
 import IconProps from './iconProps';
 
-const notification = ({width, height, color}: IconProps) => {
+export const Notification: FC<IconProps> = ({width, height, color}) => {
   return (
     <SvgWrapper
       width={width}
@@ -39,4 +39,4 @@ const notification = ({width, height, color}: IconProps) => {
   );
 };
 
-export default notification;
+export default Notification;
