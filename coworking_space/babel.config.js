@@ -19,9 +19,11 @@ module.exports = {
         alias: {
           tests: ['./tests/'],
           '@components': './GoOfficeSpace/components',
+          '@hooks': './GoOfficeSpace/hooks',
           '@screens': './GoOfficeSpace/screens',
           '@navigators': './GoOfficeSpace/navigators',
           '@assets': './GoOfficeSpace/assets',
+          '@theme': './GoOfficeSpace/theme',
           '@utils': './GoOfficeSpace/utils',
         },
       },

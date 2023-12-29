@@ -7,7 +7,7 @@ import Chat from '@screens/Chat/Chat';
 import Setting from '@screens/Setting/Setting';
 import Wallet from '@screens/Wallet/Wallet';
 import {Home} from '@screens/index';
-import {Colors} from '@utils/colors';
+import {Colors} from '@theme/colors';
 import React, {FC, ReactNode} from 'react';
 import {Text, View} from 'react-native';
 
