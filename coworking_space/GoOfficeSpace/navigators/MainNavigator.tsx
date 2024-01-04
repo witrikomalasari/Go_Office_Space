@@ -1,9 +1,9 @@
 import React, {ComponentProps, Fragment} from 'react';
-import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import MainTabNavigator from './TabNavigator';
 import Login from '@screens/Login/Login';
 import {Booking, Checkout, Detail, Success} from '@screens/index';
+import {NavigationContainer} from '@react-navigation/native';
 
 // type navigator param list efeknya ke properties stack screen yaitu name
 export type NavigatorParamLIst = {
