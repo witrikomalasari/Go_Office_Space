@@ -1,9 +1,9 @@
 import React, {ComponentProps, Fragment} from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import MainTabNavigator from './TabNavigator';
 import Login from '@screens/Login/Login';
 import {Booking, Checkout, Detail, Success} from '@screens/index';
 import {NavigationContainer} from '@react-navigation/native';
+import MainTabNavigator from './TabNavigator/TabNavigator';
 
 // type navigator param list efeknya ke properties stack screen yaitu name
 export type NavigatorParamLIst = {
@@ -35,7 +35,11 @@ export const AppStack = () => {
     return Route;
   };
 
-  return <Stack.Navigator>{getCurrentRoutes()}</Stack.Navigator>;
+  return (
+    <Stack.Navigator screenOptions={{headerShown: false}}>
+      {getCurrentRoutes()}
+    </Stack.Navigator>
+  );
 };
 
 interface NavigationProps
