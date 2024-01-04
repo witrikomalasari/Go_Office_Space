@@ -11,18 +11,18 @@ import {Home} from '@screens/index';
 import {Colors} from '@theme/colors';
 import {cornerCustom} from '@theme/radiusLine';
 import React, {FC} from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {Dimensions, Text, View} from 'react-native';
 
-// const {width} = Dimensions.get('window');
+const {width} = Dimensions.get('window');
 
-// export type NavigatorBottomParamList = {
-//   Home: undefined;
-//   Chat: undefined;
-//   Wallet: undefined;
-//   Setting: undefined;
-// };
+export type NavigatorBottomParamList = {
+  Discover: undefined;
+  Chat: undefined;
+  Wallet: undefined;
+  Setting: undefined;
+};
 
-const TabNav = createBottomTabNavigator();
+const TabNav = createBottomTabNavigator<NavigatorBottomParamList>();
 
 // type NavigationBottomParams = NativeStackNavigationProp<
 //   NavigatorBottomParamList,
@@ -49,10 +49,11 @@ interface IRenderTab {
 
 const renderTabIconHome: FC<IRenderTab> = ({color, focused}) => {
   return (
-    <View>
+    <>
       {focused ? (
         <View
           style={{
+            width: width / 3.2,
             flexDirection: 'row',
             justifyContent: 'center',
             alignItems: 'center',
@@ -63,6 +64,7 @@ const renderTabIconHome: FC<IRenderTab> = ({color, focused}) => {
             paddingVertical: 8,
           }}>
           <DiscoverIcon width={24} color={color} />
+          <Spacer width={5} />
           <Text
             style={{
               color: Colors.primary,
@@ -75,77 +77,109 @@ const renderTabIconHome: FC<IRenderTab> = ({color, focused}) => {
       ) : (
         <DiscoverIcon width={24} color={color} />
       )}
-    </View>
+    </>
   );
 };
 
 const renderTabIconChat: FC<IRenderTab> = ({color, focused}) => {
   return (
-    <View
-      style={{
-        flexDirection: 'row',
-        justifyContent: 'center',
-        alignItems: 'center',
-        borderColor: Colors.black,
-        ...cornerCustom(24),
-        backgroundColor: Colors.secondary,
-        paddingHorizontal: 14,
-        paddingVertical: 8,
-      }}>
-      <ChatIcon width={24} color={color} />
-      {focused && (
-        <>
+    <>
+      {focused ? (
+        <View
+          style={{
+            width: width / 3.5,
+            flexDirection: 'row',
+            justifyContent: 'center',
+            alignItems: 'center',
+            borderColor: Colors.black,
+            ...cornerCustom(24),
+            backgroundColor: Colors.secondary,
+            paddingHorizontal: 14,
+            paddingVertical: 8,
+          }}>
+          <ChatIcon width={24} color={color} />
+          <Spacer width={5} />
           <Text
-            style={{color: Colors.primary, fontWeight: 'bold', fontSize: 14}}>
+            style={{
+              color: Colors.primary,
+              fontWeight: 'bold',
+              fontSize: 14,
+            }}>
             Chat
           </Text>
-        </>
+        </View>
+      ) : (
+        <ChatIcon width={24} color={color} />
       )}
-    </View>
+    </>
   );
 };
 
 const renderTabIconCard: FC<IRenderTab> = ({color, focused}) => {
   return (
-    <View
-      style={{
-        flexDirection: 'row',
-        justifyContent: 'center',
-        alignItems: 'center',
-        borderColor: Colors.black,
-        ...cornerCustom(24),
-        backgroundColor: Colors.secondary,
-        paddingHorizontal: 14,
-        paddingVertical: 8,
-      }}>
-      <CardIcon width={24} color={color} />
-      {focused && (
-        <>
+    <>
+      {focused ? (
+        <View
+          style={{
+            width: width / 3.5,
+            flexDirection: 'row',
+            justifyContent: 'center',
+            alignItems: 'center',
+            borderColor: Colors.black,
+            ...cornerCustom(24),
+            backgroundColor: Colors.secondary,
+            paddingHorizontal: 14,
+            paddingVertical: 8,
+          }}>
+          <CardIcon width={24} color={color} />
           <Spacer width={5} />
           <Text
-            style={{color: Colors.primary, fontWeight: 'bold', fontSize: 14}}>
+            style={{
+              color: Colors.primary,
+              fontWeight: 'bold',
+              fontSize: 14,
+            }}>
             Card
           </Text>
-        </>
+        </View>
+      ) : (
+        <CardIcon width={24} color={color} />
       )}
-    </View>
+    </>
   );
 };
 
 const renderTabIconSetting: FC<IRenderTab> = ({color, focused}) => {
   return (
-    <View>
-      <SettingIcon width={24} color={color} />
-      {focused && (
-        <>
+    <>
+      {focused ? (
+        <View
+          style={{
+            width: width / 3.5,
+            flexDirection: 'row',
+            justifyContent: 'center',
+            alignItems: 'center',
+            borderColor: Colors.black,
+            ...cornerCustom(24),
+            backgroundColor: Colors.secondary,
+            paddingHorizontal: 14,
+            paddingVertical: 8,
+          }}>
+          <SettingIcon width={24} color={color} />
           <Spacer width={5} />
           <Text
-            style={{color: Colors.primary, fontWeight: 'bold', fontSize: 14}}>
+            style={{
+              color: Colors.primary,
+              fontWeight: 'bold',
+              fontSize: 14,
+            }}>
             Setting
           </Text>
-        </>
+        </View>
+      ) : (
+        <SettingIcon width={24} color={color} />
       )}
-    </View>
+    </>
   );
 };
 
@@ -160,14 +194,14 @@ const MainTabNavigator: FC<IMainTabNav> = () => {
         lazy: true,
         headerShown: true,
         tabBarStyle: {
-          borderTopLeftRadius: 10,
-          borderTopRightRadius: 10,
           height: 70,
           paddingTop: 10,
           paddingBottom: 10,
-          paddingHorizontal: 35,
+          width: width,
+          paddingHorizontal: width / 10,
         },
         tabBarInactiveTintColor: Colors.black,
+        tabBarActiveTintColor: Colors.primary,
       }}>
       <TabNav.Screen
         options={{
@@ -208,21 +242,21 @@ const MainTabNavigator: FC<IMainTabNav> = () => {
 
 export default MainTabNavigator;
 
-const styles = StyleSheet.create({
-  regular: {},
-  focused: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderColor: Colors.black,
-    ...cornerCustom(24),
-    backgroundColor: Colors.secondary,
-    paddingHorizontal: 14,
-    paddingVertical: 8,
-  },
-});
+// const styles = StyleSheet.create({
+//   regular: {},
+//   focused: {
+//     flexDirection: 'row',
+//     justifyContent: 'center',
+//     alignItems: 'center',
+//     borderColor: Colors.black,
+//     ...cornerCustom(24),
+//     backgroundColor: Colors.secondary,
+//     paddingHorizontal: 14,
+//     paddingVertical: 8,
+//   },
+// });
 
-const IconBottomTab = {
-  regular: styles.regular,
-  focused: styles.focused,
-};
+// const IconBottomTab = {
+//   regular: styles.regular,
+//   focused: styles.focused,
+// };
